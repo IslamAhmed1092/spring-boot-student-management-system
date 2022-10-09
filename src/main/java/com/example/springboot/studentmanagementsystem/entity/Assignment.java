@@ -2,6 +2,7 @@ package com.example.springboot.studentmanagementsystem.entity;
 
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Table
@@ -20,15 +21,19 @@ public class Assignment {
     @JoinColumn(name = "course_id")
     private Course course;
 
+    @Column(name = "due_date")
+    private Date dueDate;
+
     @OneToMany(mappedBy = "assignment")
     private List<AssignmentSubmission> assignmentSubmissions;
 
     public Assignment() {
     }
 
-    public Assignment(String description, Course course) {
+    public Assignment(String description, Course course, Date dueDate) {
         this.description = description;
         this.course = course;
+        this.dueDate = dueDate;
     }
 
     public int getId() {
@@ -61,5 +66,13 @@ public class Assignment {
 
     public void setAssignmentSubmissions(List<AssignmentSubmission> assignmentSubmissions) {
         this.assignmentSubmissions = assignmentSubmissions;
+    }
+
+    public Date getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
     }
 }
