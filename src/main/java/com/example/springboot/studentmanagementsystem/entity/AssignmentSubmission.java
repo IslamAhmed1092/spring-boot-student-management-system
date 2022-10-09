@@ -29,4 +29,62 @@ public class AssignmentSubmission {
     @Column(name = "mark")
     private float mark;
 
+    public AssignmentSubmission() {
+    }
+
+    public AssignmentSubmission(Student student, Assignment assignment, Date submissionDate, String contentSubmitted, float mark) {
+        this.student = student;
+        this.assignment = assignment;
+        this.submissionDate = submissionDate;
+        this.contentSubmitted = contentSubmitted;
+        this.mark = mark;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Assignment getAssignment() {
+        return assignment;
+    }
+
+    public void setAssignment(Assignment assignment) {
+        this.assignment = assignment;
+    }
+
+    public Date getSubmissionDate() {
+        return submissionDate;
+    }
+
+    public void setSubmissionDate(Date submissionDate) {
+        this.submissionDate = submissionDate;
+    }
+
+    public String getContentSubmitted() {
+        return contentSubmitted;
+    }
+
+    public void setContentSubmitted(String contentSubmitted) {
+        this.contentSubmitted = contentSubmitted;
+    }
+
+    public float getMark() {
+        return mark;
+    }
+
+    public void setMark(float mark) {
+        this.mark = mark;
+    }
 }

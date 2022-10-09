@@ -32,4 +32,60 @@ public class Course {
 
     @OneToMany(mappedBy = "course")
     private List<Assignment> assignments;
+
+    public Course() {
+    }
+
+    public Course(String name, Teacher teacher) {
+        this.name = name;
+        this.teacher = teacher;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
+    public List<Student> getEnrolledStudents() {
+        return enrolledStudents;
+    }
+
+    public void setEnrolledStudents(List<Student> enrolledStudents) {
+        this.enrolledStudents = enrolledStudents;
+    }
+
+    public List<CourseAttendance> getCourseAttendances() {
+        return courseAttendances;
+    }
+
+    public void setCourseAttendances(List<CourseAttendance> courseAttendances) {
+        this.courseAttendances = courseAttendances;
+    }
+
+    public List<Assignment> getAssignments() {
+        return assignments;
+    }
+
+    public void setAssignments(List<Assignment> assignments) {
+        this.assignments = assignments;
+    }
 }
