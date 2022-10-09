@@ -75,4 +75,8 @@ public class Assignment {
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
     }
+
+    public void submitAssignment(AssignmentSubmission assignmentSubmission) {
+        assignmentSubmissions.add(assignmentSubmission);
+    }
 }

@@ -44,6 +44,7 @@ public class Student {
     @OneToMany(mappedBy = "student")
     private List<AssignmentSubmission> assignmentSubmissions;
 
+
     public Student() {
     }
 
@@ -134,5 +135,17 @@ public class Student {
 
     public void setAssignmentSubmissions(List<AssignmentSubmission> assignmentSubmissions) {
         this.assignmentSubmissions = assignmentSubmissions;
+    }
+
+    public void enrollToCourse(Course course) {
+        enrolledCourses.add(course);
+    }
+
+    public void attendCourse(CourseAttendance courseAttendance) {
+        courseAttendances.add(courseAttendance);
+    }
+
+    public void submitAssignment(AssignmentSubmission assignmentSubmission) {
+        assignmentSubmissions.add(assignmentSubmission);
     }
 }

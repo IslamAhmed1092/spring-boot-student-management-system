@@ -73,4 +73,8 @@ public class Teacher {
     public void setCourses(List<Course> courses) {
         this.courses = courses;
     }
+
+    public void assignCourse(Course course) {
+        courses.add(course);
+    }
 }

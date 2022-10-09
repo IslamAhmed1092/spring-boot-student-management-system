@@ -88,4 +88,18 @@ public class Course {
     public void setAssignments(List<Assignment> assignments) {
         this.assignments = assignments;
     }
+
+
+    public void enrollStudent(Student student) {
+        enrolledStudents.add(student);
+    }
+
+    public void submitCourseAttendance(CourseAttendance courseAttendance) {
+        courseAttendances.add(courseAttendance);
+    }
+
+    public void addAssignment(Assignment assignment) {
+        assignments.add(assignment);
+    }
+
 }
