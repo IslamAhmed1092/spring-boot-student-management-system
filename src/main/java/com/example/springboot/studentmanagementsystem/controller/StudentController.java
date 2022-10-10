@@ -75,7 +75,7 @@ public class StudentController {
     }
 
 
-    @GetMapping("/students/{studentId}/classes")
+    @GetMapping("/students/{studentId}/courses")
     public List<Course> viewStudentAssignedClasses(@PathVariable int studentId) {
         return studentService.viewStudentAssignedClasses(studentId);
     }

@@ -2,6 +2,7 @@ package com.example.springboot.studentmanagementsystem.controller;
 
 
 import com.example.springboot.studentmanagementsystem.entity.Course;
+import com.example.springboot.studentmanagementsystem.entity.Student;
 import com.example.springboot.studentmanagementsystem.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -68,5 +69,10 @@ public class CourseController {
         courseService.deleteById(courseId);
 
         return "Deleted Course id - " + courseId;
+    }
+
+    @GetMapping("/courses/{courseId}/students")
+    public List<Student> getStudentsInCourse(@PathVariable int courseId) {
+        return courseService.getStudentsInCourse(courseId);
     }
 }

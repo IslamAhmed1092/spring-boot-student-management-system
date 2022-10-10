@@ -2,6 +2,7 @@ package com.example.springboot.studentmanagementsystem.service;
 
 import com.example.springboot.studentmanagementsystem.entity.Admin;
 import com.example.springboot.studentmanagementsystem.entity.Course;
+import com.example.springboot.studentmanagementsystem.entity.Student;
 
 import java.util.List;
 
@@ -15,4 +16,5 @@ public interface CourseService {
 
     public Course findById(int id);
 
+    public List<Student> getStudentsInCourse(int courseId);
 }

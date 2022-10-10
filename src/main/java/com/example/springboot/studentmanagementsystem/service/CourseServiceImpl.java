@@ -2,6 +2,7 @@ package com.example.springboot.studentmanagementsystem.service;
 
 import com.example.springboot.studentmanagementsystem.dao.CourseRepository;
 import com.example.springboot.studentmanagementsystem.entity.Course;
+import com.example.springboot.studentmanagementsystem.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,5 +38,10 @@ public class CourseServiceImpl implements CourseService {
     public Course findById(int id) {
         Optional<Course> result = courseRepository.findById(id);
         return result.orElse(null);
+    }
+
+    @Override
+    public List<Student> getStudentsInCourse(int courseId) {
+        return courseRepository.getStudentsInCourse(courseId);
     }
 }
