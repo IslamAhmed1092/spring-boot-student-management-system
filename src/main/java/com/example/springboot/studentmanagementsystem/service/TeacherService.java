@@ -6,12 +6,12 @@ import java.util.List;
 
 public interface TeacherService {
 
-    public void addTeacher(Teacher teacher);
+    public void save(Teacher teacher);
 
-    public void removeTeacher(int id);
+    public void deleteById(int id);
 
-    public List<Teacher> viewAllTeachers();
+    public List<Teacher> findAll();
 
-    public Teacher viewTeacherDetails(int id);
+    public Teacher findById(int id);
 
 }
