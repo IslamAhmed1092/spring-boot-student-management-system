@@ -1,5 +1,7 @@
 package com.example.springboot.studentmanagementsystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -30,6 +32,7 @@ public class Student {
     @Column(name = "gender")
     private String gender;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "course_student",
@@ -38,9 +41,11 @@ public class Student {
     )
     private List<Course> enrolledCourses;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "student")
     private List<CourseAttendance> courseAttendances;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "student")
     private List<AssignmentSubmission> assignmentSubmissions;
 
