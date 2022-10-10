@@ -1,6 +1,7 @@
 package com.example.springboot.studentmanagementsystem.service;
 
 import com.example.springboot.studentmanagementsystem.dao.CourseRepository;
+import com.example.springboot.studentmanagementsystem.entity.Assignment;
 import com.example.springboot.studentmanagementsystem.entity.Course;
 import com.example.springboot.studentmanagementsystem.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,10 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public List<Student> getStudentsInCourse(int courseId) {
         return courseRepository.getStudentsInCourse(courseId);
+    }
+
+    @Override
+    public List<Assignment> getAssignmentsInCourse(int courseId) {
+        return courseRepository.getAssignmentsInCourse(courseId);
     }
 }
