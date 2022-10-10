@@ -1,6 +1,7 @@
 package com.example.springboot.studentmanagementsystem.controller;
 
 
+import com.example.springboot.studentmanagementsystem.entity.Course;
 import com.example.springboot.studentmanagementsystem.entity.Student;
 import com.example.springboot.studentmanagementsystem.entity.Teacher;
 import com.example.springboot.studentmanagementsystem.service.StudentService;
@@ -72,4 +73,15 @@ public class StudentController {
 
         return "Deleted Student id - " + studentId;
     }
+
+
+    @GetMapping("/students/{studentId}/classes")
+    public List<Course> viewStudentAssignedClasses(@PathVariable int studentId) {
+        return studentService.viewStudentAssignedClasses(studentId);
+    }
+
+/*    @GetMapping("/students/classes")
+    public List<List<Course>> viewStudentsAssignedClasses() {
+        return studentService.viewStudentsAssignedClasses();
+    }*/
 }
