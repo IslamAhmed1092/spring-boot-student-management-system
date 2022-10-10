@@ -1,6 +1,8 @@
 package com.example.springboot.studentmanagementsystem.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -24,6 +26,7 @@ public class Assignment {
     @Column(name = "due_date")
     private Date dueDate;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "assignment")
     private List<AssignmentSubmission> assignmentSubmissions;
 
