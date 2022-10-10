@@ -1,5 +1,7 @@
 package com.example.springboot.studentmanagementsystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -22,6 +24,8 @@ public class Teacher {
     @Column(name = "mobile_number")
     private String mobileNumber;
 
+
+    @JsonIgnore
     @OneToMany(mappedBy = "teacher")
     private List<Course> courses;
 
