@@ -1,6 +1,7 @@
 package com.example.springboot.studentmanagementsystem.controller;
 
 
+import com.example.springboot.studentmanagementsystem.entity.Course;
 import com.example.springboot.studentmanagementsystem.entity.Teacher;
 import com.example.springboot.studentmanagementsystem.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,4 +71,10 @@ public class TeacherController {
 
         return "Deleted Teacher id - " + teacherId;
     }
+
+    @GetMapping("/teachers/{teacherId}/courses")
+    public List<Course> getAllClasses(@PathVariable int teacherId) {
+        return teacherService.getAllClasses(teacherId);
+    }
+
 }

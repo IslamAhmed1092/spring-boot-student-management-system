@@ -1,6 +1,7 @@
 package com.example.springboot.studentmanagementsystem.service;
 
 import com.example.springboot.studentmanagementsystem.dao.TeacherRepository;
+import com.example.springboot.studentmanagementsystem.entity.Course;
 import com.example.springboot.studentmanagementsystem.entity.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,5 +38,10 @@ public class TeacherServiceImpl implements TeacherService {
     public Teacher findById(int id) {
         Optional<Teacher> result = teacherRepository.findById(id);
         return result.orElse(null);
+    }
+
+    @Override
+    public List<Course> getAllClasses(int teacherId) {
+        return teacherRepository.getAllClasses(teacherId);
     }
 }
