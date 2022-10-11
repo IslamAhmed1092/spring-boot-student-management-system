@@ -15,17 +15,15 @@ import java.util.Optional;
 public class AssignmentServiceImpl implements AssignmentService {
 
     private AssignmentRepository assignmentRepository;
-    private CourseRepository courseRepository;
 
     @Autowired
-    public AssignmentServiceImpl(AssignmentRepository assignmentRepository, CourseRepository courseRepository) {
+    public AssignmentServiceImpl(AssignmentRepository assignmentRepository) {
         this.assignmentRepository = assignmentRepository;
-        this.courseRepository = courseRepository;
     }
 
     @Override
-    public void save(AssignmentDTO assignmentDTO) {
-        Optional<Course> result = courseRepository.findById(assignmentDTO.getCourseId());
+    public void save(Assignment assignment) {
+        /*Optional<Course> result = courseRepository.findById(assignmentDTO.getCourseId());
         if(result.isPresent()) {
             Assignment assignment = new Assignment(assignmentDTO);
             assignment.setCourse(result.get());
@@ -33,7 +31,8 @@ public class AssignmentServiceImpl implements AssignmentService {
             assignmentDTO.setId(assignment.getId());
         } else {
             throw new RuntimeException("Course id not found - " + assignmentDTO.getCourseId());
-        }
+        }*/
+        assignmentRepository.save(assignment);
     }
 
     @Override

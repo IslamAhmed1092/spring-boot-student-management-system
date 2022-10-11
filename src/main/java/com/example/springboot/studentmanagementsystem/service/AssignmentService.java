@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface AssignmentService {
 
-    public void save(AssignmentDTO assignmentDTO);
+    public void save(Assignment assignment);
 
     public void deleteById(int id);
 
