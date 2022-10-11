@@ -1,5 +1,6 @@
 package com.example.springboot.studentmanagementsystem.service;
 
+import com.example.springboot.studentmanagementsystem.dto.AssignmentDTO;
 import com.example.springboot.studentmanagementsystem.entity.Admin;
 import com.example.springboot.studentmanagementsystem.entity.Assignment;
 
@@ -7,7 +8,7 @@ import java.util.List;
 
 public interface AssignmentService {
 
-    public void save(Assignment assignment);
+    public void save(AssignmentDTO assignmentDTO);
 
     public void deleteById(int id);
 

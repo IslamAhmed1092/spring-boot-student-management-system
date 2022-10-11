@@ -1,6 +1,7 @@
 package com.example.springboot.studentmanagementsystem.controller;
 
 
+import com.example.springboot.studentmanagementsystem.dto.AssignmentDTO;
 import com.example.springboot.studentmanagementsystem.entity.Assignment;
 import com.example.springboot.studentmanagementsystem.service.AssignmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,26 +36,26 @@ public class AssignmentController {
     }
 
     @PostMapping("/assignments")
-    public Assignment addAssignment(@RequestBody Assignment assignment) {
+    public AssignmentDTO addAssignment(@RequestBody AssignmentDTO assignmentDTO) {
 
-        assignment.setId(0);
+        assignmentDTO.setId(0);
 
-        assignmentService.save(assignment);
+        assignmentService.save(assignmentDTO);
 
-        return assignment;
+        return assignmentDTO;
     }
 
     @PutMapping("/assignments/{assignmentId}")
-    public Assignment updateAssignment(@PathVariable int assignmentId, @RequestBody Assignment assignment) {
+    public AssignmentDTO updateAssignment(@PathVariable int assignmentId, @RequestBody AssignmentDTO assignmentDTO) {
         Assignment dbAssignment = assignmentService.findById(assignmentId);
 
         if(dbAssignment == null) {
             throw new RuntimeException("Assignment id not found - " + assignmentId);
         }
 
-        assignment.setId(assignmentId);
-        assignmentService.save(assignment);
-        return assignment;
+        assignmentDTO.setId(assignmentId);
+        assignmentService.save(assignmentDTO);
+        return assignmentDTO;
     }
 
     @DeleteMapping("/assignments/{assignmentId}")

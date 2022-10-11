@@ -1,6 +1,7 @@
 package com.example.springboot.studentmanagementsystem.entity;
 
 
+import com.example.springboot.studentmanagementsystem.dto.AssignmentDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -32,6 +33,15 @@ public class Assignment {
 
     public Assignment() {
     }
+
+
+    public Assignment(AssignmentDTO assignmentDTO) {
+        this.id = assignmentDTO.getId();
+        this.description = assignmentDTO.getDescription();
+        this.dueDate = assignmentDTO.getDueDate();
+        this.course = null;
+    }
+
 
     public Assignment(String description, Course course, Date dueDate) {
         this.description = description;
