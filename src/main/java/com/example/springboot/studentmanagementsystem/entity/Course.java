@@ -1,5 +1,6 @@
 package com.example.springboot.studentmanagementsystem.entity;
 
+import com.example.springboot.studentmanagementsystem.dto.CourseDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -39,6 +40,11 @@ public class Course {
     private List<Assignment> assignments;
 
     public Course() {
+    }
+
+    public Course(CourseDTO courseDTO) {
+        this.id = courseDTO.getId();
+        this.name = courseDTO.getName();
     }
 
     public Course(String name, Teacher teacher) {

@@ -26,7 +26,7 @@ public class AssignmentFacadeImpl implements AssignmentFacade {
 
 
     @Override
-    public void save(AssignmentDTO assignmentDTO) {
+    public void add(AssignmentDTO assignmentDTO) {
         Assignment assignment = convertToEntity(assignmentDTO);
         assignment.setId(0);
         assignmentService.save(assignment);

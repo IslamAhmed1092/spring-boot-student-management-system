@@ -32,6 +32,8 @@ public class Student {
     @Column(name = "gender")
     private String gender;
 
+
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "course_student",

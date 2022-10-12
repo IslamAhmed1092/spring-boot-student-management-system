@@ -55,4 +55,8 @@ public class AssignmentDTO {
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
     }
+
+    public static AssignmentDTO convertToDTO(Assignment assignment) {
+        return new AssignmentDTO(assignment);
+    }
 }

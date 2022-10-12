@@ -32,15 +32,12 @@ public class AssignmentController {
 
     @PostMapping("/assignments")
     public AssignmentDTO addAssignment(@RequestBody AssignmentDTO assignmentDTO) {
-
-        assignmentFacade.save(assignmentDTO);
-
+        assignmentFacade.add(assignmentDTO);
         return assignmentDTO;
     }
 
-    @PutMapping("/assignments/{assignmentId}")
-    public AssignmentDTO updateAssignment(@PathVariable int assignmentId, @RequestBody AssignmentDTO assignmentDTO) {
-        assignmentDTO.setId(assignmentId);
+    @PutMapping("/assignments/")
+    public AssignmentDTO updateAssignment(@RequestBody AssignmentDTO assignmentDTO) {
         assignmentFacade.update(assignmentDTO);
         return assignmentDTO;
     }

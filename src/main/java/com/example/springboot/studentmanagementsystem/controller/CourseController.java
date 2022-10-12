@@ -1,10 +1,12 @@
 package com.example.springboot.studentmanagementsystem.controller;
 
 
+import com.example.springboot.studentmanagementsystem.dto.AssignmentDTO;
+import com.example.springboot.studentmanagementsystem.dto.CourseDTO;
 import com.example.springboot.studentmanagementsystem.entity.Assignment;
 import com.example.springboot.studentmanagementsystem.entity.Course;
 import com.example.springboot.studentmanagementsystem.entity.Student;
-import com.example.springboot.studentmanagementsystem.service.CourseService;
+import com.example.springboot.studentmanagementsystem.facade.CourseFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,73 +14,49 @@ import java.util.List;
 
 @RestController
 public class CourseController {
-    private CourseService courseService;
+    private CourseFacade courseFacade;
 
     @Autowired
-    public CourseController(CourseService courseService) {
-        this.courseService = courseService;
+    public CourseController(CourseFacade courseFacade) {
+        this.courseFacade = courseFacade;
     }
 
 
     @GetMapping("/courses")
-    public List<Course> viewAllCourses() {
-        return courseService.findAll();
+    public List<CourseDTO> viewAllCourses() {
+        return courseFacade.findAll();
     }
 
     @GetMapping("/courses/{courseId}")
-    public Course getCourse(@PathVariable int courseId) {
-        Course course = courseService.findById(courseId);
-
-        if(course == null) {
-            throw new RuntimeException("Course id not found - " + courseId);
-        }
-
-        return course;
+    public CourseDTO getCourse(@PathVariable int courseId) {
+        return courseFacade.findById(courseId);
     }
 
     @PostMapping("/courses")
-    public Course addCourse(@RequestBody Course course) {
-
-        course.setId(0);
-
-        courseService.save(course);
-
-        return course;
+    public CourseDTO addCourse(@RequestBody CourseDTO courseDTO) {
+        courseFacade.add(courseDTO);
+        return courseDTO;
     }
 
-    @PutMapping("/courses/{courseId}")
-    public Course updateCourse(@PathVariable int courseId, @RequestBody Course course) {
-        Course dbCourse = courseService.findById(courseId);
-
-        if(dbCourse == null) {
-            throw new RuntimeException("Course id not found - " + courseId);
-        }
-
-        course.setId(courseId);
-        courseService.save(course);
-        return course;
+    @PutMapping("/courses")
+    public CourseDTO updateCourse(@RequestBody CourseDTO courseDTO) {
+        courseFacade.update(courseDTO);
+        return courseDTO;
     }
 
     @DeleteMapping("/courses/{courseId}")
     public String removeCourse(@PathVariable int courseId) {
-        Course course = courseService.findById(courseId);
-
-        if(course == null) {
-            throw new RuntimeException("Course id not found - " + courseId);
-        }
-
-        courseService.deleteById(courseId);
-
+        courseFacade.deleteById(courseId);
         return "Deleted Course id - " + courseId;
     }
 
     @GetMapping("/courses/{courseId}/students")
     public List<Student> getStudentsInCourse(@PathVariable int courseId) {
-        return courseService.getStudentsInCourse(courseId);
+        return courseFacade.getStudentsInCourse(courseId);
     }
 
     @GetMapping("/courses/{courseId}/assignments")
-    public List<Assignment> getAssignmentsInCourse(@PathVariable int courseId) {
-        return courseService.getAssignmentsInCourse(courseId);
+    public List<AssignmentDTO> getAssignmentsInCourse(@PathVariable int courseId) {
+        return courseFacade.getAssignmentsInCourse(courseId);
     }
 }

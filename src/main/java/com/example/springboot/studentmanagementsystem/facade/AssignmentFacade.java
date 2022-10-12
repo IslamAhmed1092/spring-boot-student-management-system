@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 public interface AssignmentFacade {
-    public void save(AssignmentDTO assignmentDTO);
+    public void add(AssignmentDTO assignmentDTO);
 
     public void update(AssignmentDTO assignmentDTO);
 
