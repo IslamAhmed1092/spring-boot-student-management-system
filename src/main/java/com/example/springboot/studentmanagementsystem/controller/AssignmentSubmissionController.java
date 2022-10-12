@@ -1,7 +1,9 @@
 package com.example.springboot.studentmanagementsystem.controller;
 
 
+import com.example.springboot.studentmanagementsystem.dto.AssignmentSubmissionDTO;
 import com.example.springboot.studentmanagementsystem.entity.AssignmentSubmission;
+import com.example.springboot.studentmanagementsystem.facade.AssignmentSubmissionFacade;
 import com.example.springboot.studentmanagementsystem.service.AssignmentSubmissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,63 +12,39 @@ import java.util.List;
 
 @RestController
 public class AssignmentSubmissionController {
-    private AssignmentSubmissionService assignmentSubmissionService;
+    private AssignmentSubmissionFacade assignmentSubmissionFacade;
 
     @Autowired
-    public AssignmentSubmissionController(AssignmentSubmissionService assignmentSubmissionService) {
-        this.assignmentSubmissionService = assignmentSubmissionService;
+    public AssignmentSubmissionController(AssignmentSubmissionFacade assignmentSubmissionFacade) {
+        this.assignmentSubmissionFacade = assignmentSubmissionFacade;
     }
 
 
     @GetMapping("/assignmentSubmissions")
-    public List<AssignmentSubmission> viewAllAssignmentSubmissions() {
-        return assignmentSubmissionService.findAll();
+    public List<AssignmentSubmissionDTO> viewAllAssignmentSubmissions() {
+        return assignmentSubmissionFacade.findAll();
     }
 
     @GetMapping("/assignmentSubmissions/{assignmentSubmissionId}")
-    public AssignmentSubmission getAssignmentSubmission(@PathVariable int assignmentSubmissionId) {
-        AssignmentSubmission assignmentSubmission = assignmentSubmissionService.findById(assignmentSubmissionId);
-
-        if(assignmentSubmission == null) {
-            throw new RuntimeException("AssignmentSubmission id not found - " + assignmentSubmissionId);
-        }
-
-        return assignmentSubmission;
+    public AssignmentSubmissionDTO getAssignmentSubmission(@PathVariable int assignmentSubmissionId) {
+        return assignmentSubmissionFacade.findById(assignmentSubmissionId);
     }
 
     @PostMapping("/assignmentSubmissions")
-    public AssignmentSubmission addAssignmentSubmission(@RequestBody AssignmentSubmission assignmentSubmission) {
-
-        assignmentSubmission.setId(0);
-
-        assignmentSubmissionService.save(assignmentSubmission);
-
-        return assignmentSubmission;
+    public AssignmentSubmissionDTO addAssignmentSubmission(@RequestBody AssignmentSubmissionDTO assignmentSubmissionDTO) {
+        assignmentSubmissionFacade.add(assignmentSubmissionDTO);
+        return assignmentSubmissionDTO;
     }
 
-    @PutMapping("/assignmentSubmissions/{assignmentSubmissionId}")
-    public AssignmentSubmission updateAssignmentSubmission(@PathVariable int assignmentSubmissionId, @RequestBody AssignmentSubmission assignmentSubmission) {
-        AssignmentSubmission dbAssignmentSubmission = assignmentSubmissionService.findById(assignmentSubmissionId);
-
-        if(dbAssignmentSubmission == null) {
-            throw new RuntimeException("AssignmentSubmission id not found - " + assignmentSubmissionId);
-        }
-
-        assignmentSubmission.setId(assignmentSubmissionId);
-        assignmentSubmissionService.save(assignmentSubmission);
-        return assignmentSubmission;
+    @PutMapping("/assignmentSubmissions")
+    public AssignmentSubmissionDTO updateAssignmentSubmission(@RequestBody AssignmentSubmissionDTO assignmentSubmissionDTO) {
+        assignmentSubmissionFacade.update(assignmentSubmissionDTO);
+        return assignmentSubmissionDTO;
     }
 
     @DeleteMapping("/assignmentSubmissions/{assignmentSubmissionId}")
     public String removeAssignmentSubmission(@PathVariable int assignmentSubmissionId) {
-        AssignmentSubmission assignmentSubmission = assignmentSubmissionService.findById(assignmentSubmissionId);
-
-        if(assignmentSubmission == null) {
-            throw new RuntimeException("AssignmentSubmission id not found - " + assignmentSubmissionId);
-        }
-
-        assignmentSubmissionService.deleteById(assignmentSubmissionId);
-
+        assignmentSubmissionFacade.deleteById(assignmentSubmissionId);
         return "Deleted AssignmentSubmission id - " + assignmentSubmissionId;
     }
 }

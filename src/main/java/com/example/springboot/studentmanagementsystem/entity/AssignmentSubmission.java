@@ -1,5 +1,7 @@
 package com.example.springboot.studentmanagementsystem.entity;
 
+import com.example.springboot.studentmanagementsystem.dto.AssignmentSubmissionDTO;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -31,6 +33,14 @@ public class AssignmentSubmission {
 
     public AssignmentSubmission() {
     }
+
+    public AssignmentSubmission(AssignmentSubmissionDTO assignmentSubmissionDTO) {
+        this.id = assignmentSubmissionDTO.getId();
+        this.submissionDate = assignmentSubmissionDTO.getSubmissionDate();
+        this.contentSubmitted = assignmentSubmissionDTO.getContentSubmitted();
+        this.mark = assignmentSubmissionDTO.getMark();
+    }
+
 
     public AssignmentSubmission(Student student, Assignment assignment, Date submissionDate, String contentSubmitted, float mark) {
         this.student = student;
