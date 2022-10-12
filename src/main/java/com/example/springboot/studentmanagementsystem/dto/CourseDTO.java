@@ -1,5 +1,6 @@
 package com.example.springboot.studentmanagementsystem.dto;
 
+import com.example.springboot.studentmanagementsystem.entity.Assignment;
 import com.example.springboot.studentmanagementsystem.entity.Course;
 
 public class CourseDTO {
@@ -41,6 +42,10 @@ public class CourseDTO {
 
     public void setTeacherId(int teacherId) {
         this.teacherId = teacherId;
+    }
+
+    public static CourseDTO convertToDTO(Course course) {
+        return new CourseDTO(course);
     }
 
 }

@@ -61,7 +61,7 @@ public class CourseFacadeImpl implements CourseFacade {
 
     @Override
     public List<CourseDTO> findAll() {
-        return courseService.findAll().stream().map(this::convertToDto)
+        return courseService.findAll().stream().map(CourseDTO::convertToDTO)
                 .collect(Collectors.toList());
     }
 
@@ -73,7 +73,7 @@ public class CourseFacadeImpl implements CourseFacade {
             throw new RuntimeException("Course id not found - " + id);
         }
 
-        return convertToDto(course);
+        return CourseDTO.convertToDTO(course);
     }
 
     @Override
@@ -84,10 +84,6 @@ public class CourseFacadeImpl implements CourseFacade {
     @Override
     public List<AssignmentDTO> getAssignmentsInCourse(int courseId) {
         return courseService.getAssignmentsInCourse(courseId).stream().map(AssignmentDTO::convertToDTO).collect(Collectors.toList());
-    }
-
-    private CourseDTO convertToDto(Course course) {
-        return new CourseDTO(course);
     }
 
     private Course convertToEntity(CourseDTO courseDTO) {

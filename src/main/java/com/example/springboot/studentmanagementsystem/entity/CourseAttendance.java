@@ -1,5 +1,7 @@
 package com.example.springboot.studentmanagementsystem.entity;
 
+import com.example.springboot.studentmanagementsystem.dto.CourseAttendanceDTO;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -27,6 +29,12 @@ public class CourseAttendance {
     private String status;
 
     public CourseAttendance() {
+    }
+
+    public CourseAttendance(CourseAttendanceDTO courseAttendanceDTO) {
+        this.id = courseAttendanceDTO.getId();
+        this.attendanceDate = courseAttendanceDTO.getAttendanceDate();
+        this.status = courseAttendanceDTO.getStatus();
     }
 
     public CourseAttendance(Course course, Student student, Date attendanceDate, String status) {
