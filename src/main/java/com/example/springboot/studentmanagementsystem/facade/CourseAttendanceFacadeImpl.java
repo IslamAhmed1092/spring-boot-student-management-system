@@ -108,9 +108,15 @@ public class CourseAttendanceFacadeImpl implements CourseAttendanceFacade {
             throw new RuntimeException("Student id not found - " + courseAttendanceDTO.getStudentId());
         }
 
+        if(!courseService.getStudentsInCourse(course.getId()).contains(student)) {
+            throw new RuntimeException("Student with id " + courseAttendanceDTO.getStudentId() + " isn't enrolled to the course with id " + courseAttendanceDTO.getCourseId());
+        }
+
         CourseAttendance courseAttendance = new CourseAttendance(courseAttendanceDTO);
         courseAttendance.setCourse(course);
         courseAttendance.setStudent(student);
+
+
 
         return courseAttendance;
     }
