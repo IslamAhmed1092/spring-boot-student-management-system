@@ -40,11 +40,17 @@ public class Course {
     private List<Student> enrolledStudents;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "course")
+    @OneToMany(
+            mappedBy = "course",
+            cascade = CascadeType.ALL
+    )
     private List<CourseAttendance> courseAttendances;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "course")
+    @OneToMany(
+            mappedBy = "course",
+            cascade = CascadeType.ALL
+    )
     private List<Assignment> assignments;
 
     public Course() {

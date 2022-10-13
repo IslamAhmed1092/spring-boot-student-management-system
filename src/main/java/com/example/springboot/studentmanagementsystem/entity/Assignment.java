@@ -28,7 +28,10 @@ public class Assignment {
     private Date dueDate;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "assignment")
+    @OneToMany(
+            mappedBy = "assignment",
+            cascade = CascadeType.ALL
+    )
     private List<AssignmentSubmission> assignmentSubmissions;
 
     public Assignment() {
