@@ -45,8 +45,8 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.viewStudentAssignedClasses(id);
     }
 
-/*    @Override
+    @Override
     public List<List<Course>> viewStudentsAssignedClasses() {
         return studentRepository.viewStudentsAssignedClasses();
-    }*/
+    }
 }

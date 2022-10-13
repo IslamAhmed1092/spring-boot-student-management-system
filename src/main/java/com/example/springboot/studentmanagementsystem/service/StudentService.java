@@ -18,7 +18,7 @@ public interface StudentService {
 
     public List<Course> viewStudentAssignedClasses(int id);
 
-//    public List<List<Course>> viewStudentsAssignedClasses();
+    public List<List<Course>> viewStudentsAssignedClasses();
 
 
 }

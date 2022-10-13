@@ -13,6 +13,8 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
     @Query("select s.enrolledCourses from student s where s.id =:studentId")
     public List<Course> viewStudentAssignedClasses(int studentId);
 
-/*    @Query("select s.enrolledCourses from student s")
-    public List<List<Course>> viewStudentsAssignedClasses();*/
+    @Query("select s.enrolledCourses from student s")
+    public List<List<Course>> viewStudentsAssignedClasses();
+
+
 }

@@ -36,7 +36,7 @@ public class AssignmentController {
         return assignmentDTO;
     }
 
-    @PutMapping("/assignments/")
+    @PutMapping("/assignments")
     public AssignmentDTO updateAssignment(@RequestBody AssignmentDTO assignmentDTO) {
         assignmentFacade.update(assignmentDTO);
         return assignmentDTO;
