@@ -35,7 +35,13 @@ public class Student {
 
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(
+            fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH, CascadeType.REFRESH
+            }
+    )
     @JoinTable(
             name = "course_student",
             joinColumns = @JoinColumn(name = "student_id"),
@@ -44,11 +50,17 @@ public class Student {
     private List<Course> enrolledCourses;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "student")
+    @OneToMany(
+            mappedBy = "student",
+            cascade = CascadeType.ALL
+    )
     private List<CourseAttendance> courseAttendances;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "student")
+    @OneToMany(
+            mappedBy = "student",
+            cascade = CascadeType.ALL
+    )
     private List<AssignmentSubmission> assignmentSubmissions;
 
 

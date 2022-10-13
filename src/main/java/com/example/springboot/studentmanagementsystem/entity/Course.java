@@ -25,7 +25,13 @@ public class Course {
     private Teacher teacher;
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(
+            fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH, CascadeType.REFRESH
+            }
+    )
     @JoinTable(
             name = "course_student",
             joinColumns = @JoinColumn(name = "course_id"),
