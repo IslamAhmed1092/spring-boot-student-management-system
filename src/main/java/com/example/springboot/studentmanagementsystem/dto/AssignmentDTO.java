@@ -56,7 +56,4 @@ public class AssignmentDTO {
         this.dueDate = dueDate;
     }
 
-    public static AssignmentDTO convertToDTO(Assignment assignment) {
-        return new AssignmentDTO(assignment);
-    }
 }

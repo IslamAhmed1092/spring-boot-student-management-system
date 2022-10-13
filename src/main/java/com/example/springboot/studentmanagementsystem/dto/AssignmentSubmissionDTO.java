@@ -82,7 +82,4 @@ public class AssignmentSubmissionDTO {
         this.mark = mark;
     }
 
-    public static AssignmentSubmissionDTO convertToDTO(AssignmentSubmission assignmentSubmission) {
-        return new AssignmentSubmissionDTO(assignmentSubmission);
-    }
 }

@@ -79,7 +79,7 @@ public class CourseAttendanceFacadeImpl implements CourseAttendanceFacade {
 
     @Override
     public List<CourseAttendanceDTO> findAll() {
-        return courseAttendanceService.findAll().stream().map(CourseAttendanceDTO::convertToDTO)
+        return courseAttendanceService.findAll().stream().map(CourseAttendanceDTO::new)
                 .collect(Collectors.toList());
     }
 
@@ -91,7 +91,7 @@ public class CourseAttendanceFacadeImpl implements CourseAttendanceFacade {
             throw new RuntimeException("CourseAttendance id not found - " + id);
         }
 
-        return CourseAttendanceDTO.convertToDTO(courseAttendance);
+        return new CourseAttendanceDTO(courseAttendance);
     }
 
     private CourseAttendance convertToEntity(CourseAttendanceDTO courseAttendanceDTO) {

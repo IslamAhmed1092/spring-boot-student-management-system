@@ -19,7 +19,7 @@ public class StudentCoursesDTO {
     public StudentCoursesDTO(Student student) {
         this.studentId = student.getId();
         this.email = student.getEmail();
-        this.assignedCourses = student.getEnrolledCourses().stream().map(CourseDTO::convertToDTO).collect(Collectors.toList());
+        this.assignedCourses = student.getEnrolledCourses().stream().map(CourseDTO::new).collect(Collectors.toList());
     }
 
     public static StudentCoursesDTO convertToDTO(Student student) {

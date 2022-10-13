@@ -59,7 +59,7 @@ public class AssignmentFacadeImpl implements AssignmentFacade {
 
     @Override
     public List<AssignmentDTO> findAll() {
-        return assignmentService.findAll().stream().map(AssignmentDTO::convertToDTO)
+        return assignmentService.findAll().stream().map(AssignmentDTO::new)
                 .collect(Collectors.toList());
     }
 
@@ -71,7 +71,7 @@ public class AssignmentFacadeImpl implements AssignmentFacade {
             throw new RuntimeException("Assignment id not found - " + id);
         }
 
-        return AssignmentDTO.convertToDTO(assignment);
+        return new AssignmentDTO(assignment);
     }
 
     private Assignment convertToEntity(AssignmentDTO assignmentDTO) {

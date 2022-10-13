@@ -44,8 +44,4 @@ public class CourseDTO {
         this.teacherId = teacherId;
     }
 
-    public static CourseDTO convertToDTO(Course course) {
-        return new CourseDTO(course);
-    }
-
 }

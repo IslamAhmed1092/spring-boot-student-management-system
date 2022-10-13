@@ -65,7 +65,7 @@ public class AssignmentSubmissionFacadeImpl implements AssignmentSubmissionFacad
 
     @Override
     public List<AssignmentSubmissionDTO> findAll() {
-        return assignmentSubmissionService.findAll().stream().map(AssignmentSubmissionDTO::convertToDTO)
+        return assignmentSubmissionService.findAll().stream().map(AssignmentSubmissionDTO::new)
                 .collect(Collectors.toList());
     }
 
@@ -77,7 +77,7 @@ public class AssignmentSubmissionFacadeImpl implements AssignmentSubmissionFacad
             throw new RuntimeException("AssignmentSubmission id not found - " + id);
         }
 
-        return AssignmentSubmissionDTO.convertToDTO(assignmentSubmission);
+        return new AssignmentSubmissionDTO(assignmentSubmission);
     }
 
     private AssignmentSubmission convertToEntity(AssignmentSubmissionDTO assignmentSubmissionDTO) {

@@ -69,8 +69,4 @@ public class CourseAttendanceDTO {
         this.status = status;
     }
 
-    public static CourseAttendanceDTO convertToDTO(CourseAttendance courseAttendance) {
-        return new CourseAttendanceDTO(courseAttendance);
-    }
-
 }
