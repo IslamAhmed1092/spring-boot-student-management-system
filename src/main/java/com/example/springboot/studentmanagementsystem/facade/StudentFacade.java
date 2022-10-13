@@ -2,6 +2,7 @@ package com.example.springboot.studentmanagementsystem.facade;
 
 
 import com.example.springboot.studentmanagementsystem.dto.AssignmentDTO;
+import com.example.springboot.studentmanagementsystem.dto.CourseDTO;
 import com.example.springboot.studentmanagementsystem.dto.StudentCoursesDTO;
 import com.example.springboot.studentmanagementsystem.entity.Course;
 import com.example.springboot.studentmanagementsystem.entity.Student;
@@ -19,7 +20,7 @@ public interface StudentFacade {
 
     public Student findById(int id);
 
-    public List<Course> viewStudentAssignedClasses(int id);
+    public List<CourseDTO> viewStudentAssignedClasses(int id);
 
     public List<StudentCoursesDTO> viewStudentsAssignedClasses();
 }

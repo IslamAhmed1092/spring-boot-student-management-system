@@ -1,6 +1,7 @@
 package com.example.springboot.studentmanagementsystem.controller;
 
 
+import com.example.springboot.studentmanagementsystem.dto.CourseDTO;
 import com.example.springboot.studentmanagementsystem.dto.StudentCoursesDTO;
 import com.example.springboot.studentmanagementsystem.entity.Course;
 import com.example.springboot.studentmanagementsystem.entity.Student;
@@ -54,7 +55,7 @@ public class StudentController {
 
 
     @GetMapping("/students/{studentId}/courses")
-    public List<Course> viewStudentAssignedClasses(@PathVariable int studentId) {
+    public List<CourseDTO> viewStudentAssignedClasses(@PathVariable int studentId) {
         return studentFacade.viewStudentAssignedClasses(studentId);
     }
 

@@ -1,6 +1,7 @@
 package com.example.springboot.studentmanagementsystem.facade;
 
 import com.example.springboot.studentmanagementsystem.dto.AssignmentDTO;
+import com.example.springboot.studentmanagementsystem.dto.CourseDTO;
 import com.example.springboot.studentmanagementsystem.dto.StudentCoursesDTO;
 import com.example.springboot.studentmanagementsystem.entity.Assignment;
 import com.example.springboot.studentmanagementsystem.entity.Course;
@@ -70,8 +71,8 @@ public class StudentFacadeImpl implements StudentFacade {
     }
 
     @Override
-    public List<Course> viewStudentAssignedClasses(int id) {
-        return studentService.viewStudentAssignedClasses(id);
+    public List<CourseDTO> viewStudentAssignedClasses(int id) {
+        return studentService.viewStudentAssignedClasses(id).stream().map(CourseDTO::new).collect(Collectors.toList());
     }
 
     @Override
