@@ -9,7 +9,7 @@ public class CourseDTO {
 
     private String name;
 
-    private int teacherId;
+    private Integer teacherId;
 
     public CourseDTO() {
     }
@@ -17,7 +17,7 @@ public class CourseDTO {
     public CourseDTO(Course course) {
         this.id = course.getId();
         this.name = course.getName();
-        this.teacherId = course.getTeacher().getId();
+        this.teacherId = (course.getTeacher() != null)? course.getTeacher().getId():null;
     }
 
     public int getId() {
@@ -36,11 +36,11 @@ public class CourseDTO {
         this.name = name;
     }
 
-    public int getTeacherId() {
+    public Integer getTeacherId() {
         return teacherId;
     }
 
-    public void setTeacherId(int teacherId) {
+    public void setTeacherId(Integer teacherId) {
         this.teacherId = teacherId;
     }
 

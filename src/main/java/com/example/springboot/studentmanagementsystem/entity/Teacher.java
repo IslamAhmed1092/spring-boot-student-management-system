@@ -26,8 +26,17 @@ public class Teacher {
 
 
     @JsonIgnore
-    @OneToMany(mappedBy = "teacher")
+    @OneToMany(mappedBy = "teacher",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE
+                    , CascadeType.DETACH, CascadeType.REFRESH})
     private List<Course> courses;
+
+
+    @PreRemove
+    private void preRemove() {
+        courses.forEach(course -> course.setTeacher(null));
+    }
+
 
     public Teacher() {
     }

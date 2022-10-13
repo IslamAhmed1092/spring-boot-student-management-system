@@ -44,15 +44,14 @@ public class AdminController {
         return admin;
     }
 
-    @PutMapping("/admins/{adminId}")
-    public Admin updateAdmin(@PathVariable int adminId, @RequestBody Admin admin) {
-        Admin dbAdmin = adminService.findById(adminId);
+    @PutMapping("/admins")
+    public Admin updateAdmin(@RequestBody Admin admin) {
+        Admin dbAdmin = adminService.findById(admin.getId());
 
         if(dbAdmin == null) {
-            throw new RuntimeException("Admin id not found - " + adminId);
+            throw new RuntimeException("Admin id not found - " + admin.getId());
         }
 
-        admin.setId(adminId);
         adminService.save(admin);
         return admin;
     }

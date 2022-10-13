@@ -46,15 +46,14 @@ public class TeacherController {
         return teacher;
     }
 
-    @PutMapping("/teachers/{teacherId}")
-    public Teacher updateTeacher(@PathVariable int teacherId, @RequestBody Teacher teacher) {
-        Teacher dbTeacher = teacherService.findById(teacherId);
+    @PutMapping("/teachers")
+    public Teacher updateTeacher(@RequestBody Teacher teacher) {
+        Teacher dbTeacher = teacherService.findById(teacher.getId());
 
         if(dbTeacher == null) {
-            throw new RuntimeException("Teacher id not found - " + teacherId);
+            throw new RuntimeException("Teacher id not found - " + teacher.getId());
         }
 
-        teacher.setId(teacherId);
         teacherService.save(teacher);
         return teacher;
     }
