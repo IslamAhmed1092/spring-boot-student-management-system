@@ -3,6 +3,7 @@ package com.example.springboot.studentmanagementsystem.controller;
 
 import com.example.springboot.studentmanagementsystem.entity.Course;
 import com.example.springboot.studentmanagementsystem.entity.Teacher;
+import com.example.springboot.studentmanagementsystem.exception.NotFoundException;
 import com.example.springboot.studentmanagementsystem.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +31,7 @@ public class TeacherController {
         Teacher teacher = teacherService.findById(teacherId);
 
         if(teacher == null) {
-            throw new RuntimeException("Teacher id not found - " + teacherId);
+            throw new NotFoundException("Teacher id not found - " + teacherId);
         }
 
         return teacher;
@@ -51,7 +52,7 @@ public class TeacherController {
         Teacher dbTeacher = teacherService.findById(teacher.getId());
 
         if(dbTeacher == null) {
-            throw new RuntimeException("Teacher id not found - " + teacher.getId());
+            throw new NotFoundException("Teacher id not found - " + teacher.getId());
         }
 
         teacherService.save(teacher);
@@ -63,7 +64,7 @@ public class TeacherController {
         Teacher teacher = teacherService.findById(teacherId);
 
         if(teacher == null) {
-            throw new RuntimeException("Teacher id not found - " + teacherId);
+            throw new NotFoundException("Teacher id not found - " + teacherId);
         }
 
         teacherService.deleteById(teacherId);

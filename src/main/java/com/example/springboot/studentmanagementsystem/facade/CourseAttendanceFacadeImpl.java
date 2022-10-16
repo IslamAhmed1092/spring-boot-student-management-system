@@ -4,6 +4,8 @@ import com.example.springboot.studentmanagementsystem.dto.CourseAttendanceDTO;
 import com.example.springboot.studentmanagementsystem.entity.CourseAttendance;
 import com.example.springboot.studentmanagementsystem.entity.Course;
 import com.example.springboot.studentmanagementsystem.entity.Student;
+import com.example.springboot.studentmanagementsystem.exception.NotFoundException;
+import com.example.springboot.studentmanagementsystem.exception.StudentNotEnrolledException;
 import com.example.springboot.studentmanagementsystem.service.CourseAttendanceService;
 import com.example.springboot.studentmanagementsystem.service.CourseService;
 import com.example.springboot.studentmanagementsystem.service.StudentService;
@@ -43,7 +45,7 @@ public class CourseAttendanceFacadeImpl implements CourseAttendanceFacade {
         CourseAttendance dbCourseAttendance = courseAttendanceService.findById(courseAttendanceDTO.getId());
 
         if(dbCourseAttendance == null) {
-            throw new RuntimeException("CourseAttendance id not found - " + courseAttendanceDTO.getId());
+            throw new NotFoundException("CourseAttendance id not found - " + courseAttendanceDTO.getId());
         }
 
         CourseAttendance courseAttendance = convertToEntity(courseAttendanceDTO);
@@ -71,7 +73,7 @@ public class CourseAttendanceFacadeImpl implements CourseAttendanceFacade {
         CourseAttendance courseAttendance = courseAttendanceService.findById(id);
 
         if(courseAttendance == null) {
-            throw new RuntimeException("CourseAttendance id not found - " + id);
+            throw new NotFoundException("CourseAttendance id not found - " + id);
         }
 
         courseAttendanceService.deleteById(id);
@@ -88,7 +90,7 @@ public class CourseAttendanceFacadeImpl implements CourseAttendanceFacade {
         CourseAttendance courseAttendance = courseAttendanceService.findById(id);
 
         if(courseAttendance == null) {
-            throw new RuntimeException("CourseAttendance id not found - " + id);
+            throw new NotFoundException("CourseAttendance id not found - " + id);
         }
 
         return new CourseAttendanceDTO(courseAttendance);
@@ -99,17 +101,17 @@ public class CourseAttendanceFacadeImpl implements CourseAttendanceFacade {
         Course course = courseService.findById(courseAttendanceDTO.getCourseId());
 
         if(course == null) {
-            throw new RuntimeException("Course id not found - " + courseAttendanceDTO.getCourseId());
+            throw new NotFoundException("Course id not found - " + courseAttendanceDTO.getCourseId());
         }
 
         Student student = studentService.findById(courseAttendanceDTO.getStudentId());
 
         if(student == null) {
-            throw new RuntimeException("Student id not found - " + courseAttendanceDTO.getStudentId());
+            throw new NotFoundException("Student id not found - " + courseAttendanceDTO.getStudentId());
         }
 
         if(!studentService.viewStudentAssignedClasses(student.getId()).contains(course)) {
-            throw new RuntimeException("Student with id " + courseAttendanceDTO.getStudentId() + " isn't enrolled to the course with id " + courseAttendanceDTO.getCourseId());
+            throw new StudentNotEnrolledException("Student with id " + courseAttendanceDTO.getStudentId() + " isn't enrolled to the course with id " + courseAttendanceDTO.getCourseId());
         }
 
         CourseAttendance courseAttendance = new CourseAttendance(courseAttendanceDTO);

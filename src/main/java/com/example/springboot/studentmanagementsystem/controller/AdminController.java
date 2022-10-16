@@ -2,6 +2,7 @@ package com.example.springboot.studentmanagementsystem.controller;
 
 
 import com.example.springboot.studentmanagementsystem.entity.Admin;
+import com.example.springboot.studentmanagementsystem.exception.NotFoundException;
 import com.example.springboot.studentmanagementsystem.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class AdminController {
         Admin admin = adminService.findById(adminId);
 
         if(admin == null) {
-            throw new RuntimeException("Admin id not found - " + adminId);
+            throw new NotFoundException("Admin id not found - " + adminId);
         }
 
         return admin;
@@ -49,7 +50,7 @@ public class AdminController {
         Admin dbAdmin = adminService.findById(admin.getId());
 
         if(dbAdmin == null) {
-            throw new RuntimeException("Admin id not found - " + admin.getId());
+            throw new NotFoundException("Admin id not found - " + admin.getId());
         }
 
         adminService.save(admin);
@@ -61,7 +62,7 @@ public class AdminController {
         Admin admin = adminService.findById(adminId);
 
         if(admin == null) {
-            throw new RuntimeException("Admin id not found - " + adminId);
+            throw new NotFoundException("Admin id not found - " + adminId);
         }
 
         adminService.deleteById(adminId);

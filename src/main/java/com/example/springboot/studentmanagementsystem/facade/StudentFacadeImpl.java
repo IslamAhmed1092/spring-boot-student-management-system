@@ -6,6 +6,7 @@ import com.example.springboot.studentmanagementsystem.dto.StudentCoursesDTO;
 import com.example.springboot.studentmanagementsystem.entity.Assignment;
 import com.example.springboot.studentmanagementsystem.entity.Course;
 import com.example.springboot.studentmanagementsystem.entity.Student;
+import com.example.springboot.studentmanagementsystem.exception.NotFoundException;
 import com.example.springboot.studentmanagementsystem.service.AssignmentService;
 import com.example.springboot.studentmanagementsystem.service.CourseService;
 import com.example.springboot.studentmanagementsystem.service.StudentService;
@@ -37,7 +38,7 @@ public class StudentFacadeImpl implements StudentFacade {
         Student dbStudent = studentService.findById(student.getId());
 
         if(dbStudent == null) {
-            throw new RuntimeException("Student id not found - " + student.getId());
+            throw new NotFoundException("Student id not found - " + student.getId());
         }
 
         studentService.save(student);
@@ -48,7 +49,7 @@ public class StudentFacadeImpl implements StudentFacade {
         Student student = studentService.findById(id);
 
         if(student == null) {
-            throw new RuntimeException("Student id not found - " + id);
+            throw new NotFoundException("Student id not found - " + id);
         }
 
         studentService.deleteById(id);
@@ -64,7 +65,7 @@ public class StudentFacadeImpl implements StudentFacade {
         Student student = studentService.findById(id);
 
         if(student == null) {
-            throw new RuntimeException("Student id not found - " + id);
+            throw new NotFoundException("Student id not found - " + id);
         }
 
         return student;

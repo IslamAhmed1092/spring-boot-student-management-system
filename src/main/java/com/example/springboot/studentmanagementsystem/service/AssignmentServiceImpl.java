@@ -23,15 +23,6 @@ public class AssignmentServiceImpl implements AssignmentService {
 
     @Override
     public void save(Assignment assignment) {
-        /*Optional<Course> result = courseRepository.findById(assignmentDTO.getCourseId());
-        if(result.isPresent()) {
-            Assignment assignment = new Assignment(assignmentDTO);
-            assignment.setCourse(result.get());
-            assignmentRepository.save(assignment);
-            assignmentDTO.setId(assignment.getId());
-        } else {
-            throw new RuntimeException("Course id not found - " + assignmentDTO.getCourseId());
-        }*/
         assignmentRepository.save(assignment);
     }
 

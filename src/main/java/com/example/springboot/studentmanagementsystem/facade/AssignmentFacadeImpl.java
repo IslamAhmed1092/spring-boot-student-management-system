@@ -4,6 +4,7 @@ import com.example.springboot.studentmanagementsystem.dao.AdminRepository;
 import com.example.springboot.studentmanagementsystem.dto.AssignmentDTO;
 import com.example.springboot.studentmanagementsystem.entity.Assignment;
 import com.example.springboot.studentmanagementsystem.entity.Course;
+import com.example.springboot.studentmanagementsystem.exception.NotFoundException;
 import com.example.springboot.studentmanagementsystem.service.AssignmentService;
 import com.example.springboot.studentmanagementsystem.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class AssignmentFacadeImpl implements AssignmentFacade {
         Assignment dbAssignment = assignmentService.findById(assignmentDTO.getId());
 
         if(dbAssignment == null) {
-            throw new RuntimeException("Assignment id not found - " + assignmentDTO.getId());
+            throw new NotFoundException("Assignment id not found - " + assignmentDTO.getId());
         }
 
         Assignment assignment = convertToEntity(assignmentDTO);
@@ -51,7 +52,7 @@ public class AssignmentFacadeImpl implements AssignmentFacade {
         Assignment assignment = assignmentService.findById(id);
 
         if(assignment == null) {
-            throw new RuntimeException("Assignment id not found - " + id);
+            throw new NotFoundException("Assignment id not found - " + id);
         }
 
         assignmentService.deleteById(id);
@@ -68,7 +69,7 @@ public class AssignmentFacadeImpl implements AssignmentFacade {
         Assignment assignment = assignmentService.findById(id);
 
         if(assignment == null) {
-            throw new RuntimeException("Assignment id not found - " + id);
+            throw new NotFoundException("Assignment id not found - " + id);
         }
 
         return new AssignmentDTO(assignment);
@@ -79,7 +80,7 @@ public class AssignmentFacadeImpl implements AssignmentFacade {
         Course course = courseService.findById(assignmentDTO.getCourseId());
 
         if(course == null) {
-            throw new RuntimeException("Course id not found - " + assignmentDTO.getCourseId());
+            throw new NotFoundException("Course id not found - " + assignmentDTO.getCourseId());
         }
 
         Assignment assignment = new Assignment(assignmentDTO);

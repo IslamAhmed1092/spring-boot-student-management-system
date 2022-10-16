@@ -6,6 +6,8 @@ import com.example.springboot.studentmanagementsystem.entity.Assignment;
 import com.example.springboot.studentmanagementsystem.entity.AssignmentSubmission;
 import com.example.springboot.studentmanagementsystem.entity.Course;
 import com.example.springboot.studentmanagementsystem.entity.Student;
+import com.example.springboot.studentmanagementsystem.exception.NotFoundException;
+import com.example.springboot.studentmanagementsystem.exception.StudentNotEnrolledException;
 import com.example.springboot.studentmanagementsystem.service.AssignmentService;
 import com.example.springboot.studentmanagementsystem.service.AssignmentSubmissionService;
 import com.example.springboot.studentmanagementsystem.service.CourseService;
@@ -45,7 +47,7 @@ public class AssignmentSubmissionFacadeImpl implements AssignmentSubmissionFacad
         AssignmentSubmission dbAssignmentSubmission = assignmentSubmissionService.findById(assignmentSubmissionDTO.getId());
 
         if(dbAssignmentSubmission == null) {
-            throw new RuntimeException("AssignmentSubmission id not found - " + assignmentSubmissionDTO.getId());
+            throw new NotFoundException("AssignmentSubmission id not found - " + assignmentSubmissionDTO.getId());
         }
 
         AssignmentSubmission assignmentSubmission = convertToEntity(assignmentSubmissionDTO);
@@ -57,7 +59,7 @@ public class AssignmentSubmissionFacadeImpl implements AssignmentSubmissionFacad
         AssignmentSubmission assignmentSubmission = assignmentSubmissionService.findById(id);
 
         if(assignmentSubmission == null) {
-            throw new RuntimeException("AssignmentSubmission id not found - " + id);
+            throw new NotFoundException("AssignmentSubmission id not found - " + id);
         }
 
         assignmentSubmissionService.deleteById(id);
@@ -74,7 +76,7 @@ public class AssignmentSubmissionFacadeImpl implements AssignmentSubmissionFacad
         AssignmentSubmission assignmentSubmission = assignmentSubmissionService.findById(id);
 
         if(assignmentSubmission == null) {
-            throw new RuntimeException("AssignmentSubmission id not found - " + id);
+            throw new NotFoundException("AssignmentSubmission id not found - " + id);
         }
 
         return new AssignmentSubmissionDTO(assignmentSubmission);
@@ -85,17 +87,17 @@ public class AssignmentSubmissionFacadeImpl implements AssignmentSubmissionFacad
         Student student = studentService.findById(assignmentSubmissionDTO.getStudentId());
 
         if(student == null) {
-            throw new RuntimeException("Student id not found - " + assignmentSubmissionDTO.getStudentId());
+            throw new NotFoundException("Student id not found - " + assignmentSubmissionDTO.getStudentId());
         }
 
         Assignment assignment = assignmentService.findById(assignmentSubmissionDTO.getAssignmentId());
 
         if(assignment == null) {
-            throw new RuntimeException("Assignment id not found - " + assignmentSubmissionDTO.getAssignmentId());
+            throw new NotFoundException("Assignment id not found - " + assignmentSubmissionDTO.getAssignmentId());
         }
 
         if(!studentService.viewStudentAssignedClasses(student.getId()).contains(assignment.getCourse())) {
-            throw new RuntimeException("Student with id " + assignmentSubmissionDTO.getStudentId() + " isn't enrolled to the course with id " + assignment.getCourse().getId() + " which contains the assignment with id " + assignment.getId());
+            throw new StudentNotEnrolledException("Student with id " + assignmentSubmissionDTO.getStudentId() + " isn't enrolled to the course with id " + assignment.getCourse().getId() + " which contains the assignment with id " + assignment.getId());
         }
 
         AssignmentSubmission assignmentSubmission = new AssignmentSubmission(assignmentSubmissionDTO);

@@ -3,6 +3,7 @@ package com.example.springboot.studentmanagementsystem.facade;
 import com.example.springboot.studentmanagementsystem.dto.AssignmentDTO;
 import com.example.springboot.studentmanagementsystem.dto.CourseDTO;
 import com.example.springboot.studentmanagementsystem.entity.Teacher;
+import com.example.springboot.studentmanagementsystem.exception.NotFoundException;
 import com.example.springboot.studentmanagementsystem.service.CourseService;
 import com.example.springboot.studentmanagementsystem.entity.Assignment;
 import com.example.springboot.studentmanagementsystem.entity.Course;
@@ -40,7 +41,7 @@ public class CourseFacadeImpl implements CourseFacade {
         Course dbCourse = courseService.findById(courseDTO.getId());
 
         if(dbCourse == null) {
-            throw new RuntimeException("Course id not found - " + courseDTO.getId());
+            throw new NotFoundException("Course id not found - " + courseDTO.getId());
         }
 
         Course course = convertToEntity(courseDTO);
@@ -53,7 +54,7 @@ public class CourseFacadeImpl implements CourseFacade {
         Course course = courseService.findById(id);
 
         if(course == null) {
-            throw new RuntimeException("Course id not found - " + id);
+            throw new NotFoundException("Course id not found - " + id);
         }
 
         courseService.deleteById(id);
@@ -70,7 +71,7 @@ public class CourseFacadeImpl implements CourseFacade {
         Course course = courseService.findById(id);
 
         if(course == null) {
-            throw new RuntimeException("Course id not found - " + id);
+            throw new NotFoundException("Course id not found - " + id);
         }
 
         return new CourseDTO(course);
@@ -91,7 +92,7 @@ public class CourseFacadeImpl implements CourseFacade {
         Teacher teacher = teacherService.findById(courseDTO.getTeacherId());
 
         if(teacher == null) {
-            throw new RuntimeException("Teacher id not found - " + courseDTO.getTeacherId());
+            throw new NotFoundException("Teacher id not found - " + courseDTO.getTeacherId());
         }
 
         Course course = new Course(courseDTO);
